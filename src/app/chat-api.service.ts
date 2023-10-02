@@ -16,7 +16,16 @@ export class ChatApiService {
 
   destryoRef = inject(DestroyRef);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.getDefaultMessage()
+      .pipe(takeUntilDestroyed(this.destryoRef))
+      .subscribe((text: string) => {
+        this.allMessagesSignal.mutate((value) => {
+          value.push({text, type: 'received'});
+          return value;
+        });
+      });
+  }
 
   sendMessage(sendingMessage: string): void {
     let index: number;
@@ -35,6 +44,13 @@ export class ChatApiService {
           return value;
         });
       });
+  }
+
+  getDefaultMessage(): Observable<string> {
+    return this.http.get("https://us-east1-personal-chat-3eac2.cloudfunctions.net/practice/",
+        {responseType: 'text'}
+      )
+      .pipe(catchError(() => of("Unfortunately, I can't answer this question.")));
   }
 
   getMessage (message: string): Observable<string> {

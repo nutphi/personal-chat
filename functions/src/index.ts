@@ -175,7 +175,7 @@ const messages = [
   },
 ];
 
-messages.push({"content": "NEXT REQUEST"});
+messages.push({"content": "Hello"});
 
 
 const app = express();
