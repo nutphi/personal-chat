@@ -1,0 +1,34 @@
+name: Deploy to Firebase Functions
+
+on:
+  workflow_dispatch: # This allows manual triggering of the workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16 # Specify the version of Node.js here
+
+    - name: Install Functions Dependencies
+      run: |
+        cd functions
+        npm install
+
+    - name: Add Secret key
+      run: |
+        echo "${{ secrets.ENV_FILE }}" > .env
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy to Firebase
+      run: npx firebase deploy --only functions
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
