@@ -37,12 +37,13 @@
     &.text {
       padding: 10px;
       border: 1px solid black;
-      border-radius: 8px;  
+      border-radius: 8px;
     }
     &.time {
       padding: 5px;
       display: flex;
       align-items: center;
+      min-width: 65px;
     }
   }
 }
