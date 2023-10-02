@@ -17,6 +17,8 @@
   .received {
     display: flex;
     width: 100%;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
     margin: 5px;
   }
   .sending {
@@ -32,9 +34,16 @@
     margin: 5px;
   }
   span {
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 8px;
+    &.text {
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 8px;  
+    }
+    &.time {
+      padding: 5px;
+      display: flex;
+      align-items: center;
+    }
   }
 }
 

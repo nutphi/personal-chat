@@ -9,7 +9,7 @@
   <div class="message-section">
     <div #messages class="message" *ngFor="let message of chat.allMessages()">
       <div class="{{message.type}}">
-        <span>{{ message.text }}</span>
+        <span class="time">{{ message.timestamp | date: 'shortTime' }}</span><span class="text">{{ message.text }}</span>
       </div>
     </div>
   </div>

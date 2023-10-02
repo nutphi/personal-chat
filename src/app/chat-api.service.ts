@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { DestroyRef, Injectable, Signal, WritableSignal, inject, signal } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, catchError, of } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Message } from './chat.model';
 @Injectable({
@@ -21,7 +21,7 @@ export class ChatApiService {
       .pipe(takeUntilDestroyed(this.destryoRef))
       .subscribe((text: string) => {
         this.allMessagesSignal.mutate((value) => {
-          value.push({text, type: 'received'});
+          value.push({text, type: 'received', timestamp: new Date().getTime()});
           return value;
         });
       });
@@ -30,7 +30,7 @@ export class ChatApiService {
   sendMessage(sendingMessage: string): void {
     let index: number;
     this.allMessagesSignal.mutate((value) => {
-      const message: Message = {text: sendingMessage, type: 'sending'};
+      const message: Message = {text: sendingMessage, type: 'sending', timestamp: new Date().getTime()};
       value.push(message);
       index = value.indexOf(message);
       return value;
@@ -40,7 +40,7 @@ export class ChatApiService {
       .subscribe((text: string) => {
         this.allMessagesSignal.mutate((value) => {
           value[index].type = 'sent';
-          value.push({text, type: 'received'});
+          value.push({text, type: 'received', timestamp: new Date().getTime()});
           return value;
         });
       });
