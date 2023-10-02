@@ -16,7 +16,7 @@
     }
   ],
   "hosting": {
-    "public": "dist/",
+    "public": "dist/personal-chat",
     "ignore": [
       "firebase.json",
       "**/.*",
