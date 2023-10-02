@@ -20,7 +20,7 @@ jobs:
     - name: Install Functions Dependencies
       run: |
         cd functions
-        npm install
+        npm ci
 
     - name: Add Secret key
       run: |
