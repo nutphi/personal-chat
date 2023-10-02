@@ -1,10 +1,24 @@
+h3 {
+  margin: 0px;
+  padding: 8px;
+  background-color: skyblue;
+  color: black;
+  border: 1px solid black;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
 .chat {
   height: 500px;
-  margin: 50px;
-  border: black solid 1px;
-  border-radius: 8px;
+  border-bottom: black solid 1px;
+  border-left: black solid 1px;
+  border-right: black solid 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   display: flex;
   flex-direction: column-reverse;
+  @media screen and (min-width: 480px) {
+    margin: 50px;
+  }
 }
 
 .message-section {
