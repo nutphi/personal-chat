@@ -11,7 +11,7 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "16"
+    "node": "20"
   },
   "main": "lib/index.js",
   "dependencies": {
@@ -20,6 +20,7 @@
     "express": "^4.18.2",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.18.0",
+    "firebase-tools": "^12.6.1",
     "google-auth-library": "^9.0.0"
   },
   "devDependencies": {
