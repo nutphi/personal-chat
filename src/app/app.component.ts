@@ -1,9 +1,9 @@
 import { Component, DestroyRef, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, inject } from '@angular/core';
 import { ChatApiService } from './chat-api.service';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, filter, map, take, tap } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,7 @@ export class AppComponent {
   title = 'personal-chat';
   destroyRef = inject(DestroyRef);
   fb = inject(FormBuilder);
+  profileImg = environment.profileImg;
   @ViewChildren('messages', {read: ElementRef<HTMLDivElement>}) messages!: QueryList<ElementRef<HTMLDivElement>>;
 
   constructor(protected chat: ChatApiService) { }
