@@ -6,6 +6,10 @@ h3 {
   border: 1px solid black;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  @media screen and (min-width: 480px) {
+    margin: 50px;
+    margin-bottom: 0px;
+  }
 }
 .chat {
   height: 500px;
@@ -18,6 +22,7 @@ h3 {
   flex-direction: column-reverse;
   @media screen and (min-width: 480px) {
     margin: 50px;
+    margin-top: 0px;
   }
 }
 
