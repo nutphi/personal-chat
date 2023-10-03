@@ -52,18 +52,22 @@ h3 {
     &.time {
       padding: 5px;
       display: flex;
-      align-items: center;
+      align-items: self-end;
       min-width: 70px;
     }
   }
 
-  img.profile-img {
-    width: 20px;
-    height: 20px;
-    margin: 5px 5px 0 5px;
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 50%;
+  .profile-section {
+    display: flex;
+    align-items: self-end;
+    img.profile-img {
+      width: 20px;
+      height: 20px;
+      margin: 5px 5px 0 5px;
+      padding: 5px;
+      border: 1px solid black;
+      border-radius: 50%;
+    }  
   }
 
   .received {
