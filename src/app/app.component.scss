@@ -13,7 +13,6 @@ h3 {
   padding: 8px;
   background-color: skyblue;
   color: black;
-  border-bottom: 1px solid black;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 
@@ -26,9 +25,8 @@ h3 {
 .chat {
   height: 80vh;
   max-height: 1024px;
-  border: black solid 1px;
   border-radius: 8px;
-  box-shadow: 4.5px 4.5px 5px lightgray;
+  box-shadow: 5px 5px 10px lightgray;
   @media screen and (min-width: 480px) {
     max-height: 100vh;
     margin: 50px;
@@ -114,10 +112,9 @@ h3 {
 }
 
 hr {
-  width: 100%;
   padding: 0;
   margin: 0;
-  border: solid 1px black;
+  border: solid 1px lightgray;
 }
 
 form {
