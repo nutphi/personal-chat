@@ -2,6 +2,10 @@
   --chatinput-height: 40px;
   --font-size: 12pt;
   --font-family: Arial, Helvetica, sans-serif;
+  --profile-icon-width: 20px;
+  --profile-icon-height: 20px;
+  --icon-width: 18px;
+  --icon-height: 18px;
 }
 
 h3 {
@@ -61,8 +65,8 @@ h3 {
     display: flex;
     align-items: self-end;
     img.profile-img {
-      width: 20px;
-      height: 20px;
+      width: var(--profile-icon-width);
+      height: var(--profile-icon-height);
       margin: 5px 5px 0 5px;
       padding: 5px;
       border: 1px solid black;
@@ -127,6 +131,14 @@ form {
     }
   }
   button[type=submit] {
-    margin: 5px;
+    padding: 5px;
+    margin-right: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    img {
+      width: var(--icon-width);
+      height: var(--icon-height);
+    }
   }
 }
