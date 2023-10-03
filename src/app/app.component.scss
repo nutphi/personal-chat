@@ -4,8 +4,8 @@
   --font-family: Arial, Helvetica, sans-serif;
   --profile-icon-width: 20px;
   --profile-icon-height: 20px;
-  --icon-width: 18px;
-  --icon-height: 18px;
+  --icon-width: 16px;
+  --icon-height: 16px;
 }
 
 h3 {
@@ -136,6 +136,8 @@ form {
     }
   }
   button[type=submit] {
+    display: flex;
+    align-items: center;
     padding: 5px;
     margin-right: 5px;
     background-color: transparent;
