@@ -1,15 +1,18 @@
 
-<h3>Chat About Nuttakit</h3>
 <div class="chat">
-  <form [formGroup]="group" (ngSubmit)="sendMessage()">
-    <input type="text" formControlName="message">
-    <button type="submit">Send</button>
-  </form>
-  <hr>
-  <div class="message-section">
-    <div #messages class="message" *ngFor="let message of chat.allMessages()">
-      <div class="{{message.type}}">
-        <span class="time">{{ message.timestamp | date: 'shortTime' }}</span><span class="text">{{ message.text }}</span>
+  <h3>Chat About Nuttakit</h3>
+  <div class="chat-content">
+    <form [formGroup]="group" (ngSubmit)="sendMessage()">
+      <input type="text" formControlName="message">
+      <button type="submit">Send</button>
+    </form>
+    <hr>
+    <div class="message-section">
+      <div #messages class="message" *ngFor="let message of chat.allMessages()">
+        <div class="{{message.type}}">
+          <span class="time">{{ message.timestamp | date: 'shortTime' }}</span><span class="text">{{ message.text }}</span>
+          <img class="profile-img" [src]="profileImg[message.type]">
+        </div>
       </div>
     </div>
   </div>
