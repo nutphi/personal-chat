@@ -16,6 +16,9 @@ h3 {
   border-bottom: 1px solid black;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .chat {
