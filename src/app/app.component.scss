@@ -48,15 +48,19 @@ h3 {
   display: flex;
   width: 100%;
   font-size: var(--font-size);
-  font-family: var(--font-family);
-
   span {
     &.text {
       padding: 10px;
       border: 1px solid black;
       border-radius: 15px;
+      pre {
+        font-family: var(--font-family);
+        margin: 0px;
+        text-wrap: wrap;
+      }
     }
     &.time {
+      font-family: var(--font-family);
       padding: 5px;
       display: flex;
       align-items: self-end;
