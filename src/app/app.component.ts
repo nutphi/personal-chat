@@ -1,4 +1,4 @@
-import { Component, DestroyRef, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, inject } from '@angular/core';
+import { Component, DestroyRef, ElementRef, QueryList, ViewChildren, inject } from '@angular/core';
 import { ChatApiService } from './chat-api.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { filter, map } from 'rxjs';
