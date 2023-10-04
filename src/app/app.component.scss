@@ -56,7 +56,9 @@ h3 {
       pre {
         font-family: var(--font-family);
         margin: 0px;
-        text-wrap: wrap;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow: auto;
       }
     }
     &.time {
