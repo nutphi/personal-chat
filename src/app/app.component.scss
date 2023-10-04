@@ -1,6 +1,7 @@
 :host {
   --chatinput-height: 40px;
-  --font-size: 12pt;
+  --font-size: 1rem;
+  --header-font-size: 1.2rem;
   --font-family: Arial, Helvetica, sans-serif;
   --profile-icon-width: 20px;
   --profile-icon-height: 20px;
@@ -10,6 +11,7 @@
 }
 
 h3 {
+  font-size: var(--header-font-size);
   margin: 0px;
   padding: 8px;
   background-color: skyblue;
