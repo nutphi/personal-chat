@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { IChatApiService } from './chat-api.interface.service';
 
 @Injectable({

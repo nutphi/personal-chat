@@ -2,7 +2,7 @@ import { DestroyRef, Injectable, Signal, WritableSignal, inject, signal } from '
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Message } from './chat.model';
 import { ChatApiService } from './api/chat-api.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 import { ChatApiMockService } from './api/mock/chat-api.mock.service';
 
 @Injectable({
