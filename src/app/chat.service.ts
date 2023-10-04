@@ -1,26 +1,25 @@
-import { HttpClient } from '@angular/common/http';
-import { DestroyRef, Injectable, Signal, WritableSignal, inject, isDevMode, signal } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { DestroyRef, Injectable, Signal, WritableSignal, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Message } from './chat.model';
-import { getASampleText$, sampleMessages$ } from './chat-messages.mock';
-import { environment } from 'src/environments/environment';
+import { ChatApiService } from './api/chat-api.service';
+import { environment } from '../environments/environment';
+import { ChatApiMockService } from './api/mock/chat-api.mock.service';
+
 @Injectable({
   providedIn: 'root'
 })
-export class ChatApiService {
-
+export class ChatService {
+  destryoRef = inject(DestroyRef);
   allMessagesSignal: WritableSignal<Message[]> = signal([] as Message[]);
+  chatApi = inject(!environment.isMockup ? ChatApiService : ChatApiMockService);
 
   get allMessages(): Signal<Message[]> {
     return this.allMessagesSignal.asReadonly();
   }
 
-  destryoRef = inject(DestroyRef);
-
-  constructor(private http: HttpClient) {
+  constructor() {
     // initial message
-    this.getDefaultMessage()
+    this.chatApi.getDefaultMessage()
       .pipe(takeUntilDestroyed(this.destryoRef))
       .subscribe((text: string) => {
         this.allMessagesSignal.mutate((value) => {
@@ -40,7 +39,7 @@ export class ChatApiService {
       return value;
     });
     // receving bot message and update user message to sent status
-    this.getMessage(sendingMessage)
+    this.chatApi.getMessage(sendingMessage)
       .pipe(takeUntilDestroyed(this.destryoRef))
       .subscribe((text: string) => {
         this.allMessagesSignal.mutate((value) => {
@@ -49,25 +48,5 @@ export class ChatApiService {
           return value;
         });
       });
-  }
-
-  getDefaultMessage(): Observable<string> {
-    if (environment.isMockup) {
-      return getASampleText$('received');
-    }
-    return this.http.get(`${environment.apiUrl}/practice/`,
-        {responseType: 'text'}
-      )
-      .pipe(catchError(() => of("Unfortunately, I can't answer this question.")));
-  }
-
-  getMessage (message: string): Observable<string> {
-    if (environment.isMockup) {
-      return getASampleText$('received');
-    }
-    return this.http.get(`${environment.apiUrl}/practice/new`,
-        {params: {message: encodeURIComponent(message)}, responseType: 'text'}
-      )
-      .pipe(catchError(() => of("Unfortunately, I can't answer this question.")));
   }
 }
