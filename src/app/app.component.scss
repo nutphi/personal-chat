@@ -6,6 +6,7 @@
   --profile-icon-height: 20px;
   --icon-width: 16px;
   --icon-height: 16px;
+  --box-shadow-color: #d3d3d3;
 }
 
 h3 {
@@ -26,7 +27,7 @@ h3 {
   height: 80vh;
   max-height: 1024px;
   border-radius: 8px;
-  box-shadow: 5px 5px 10px lightgray;
+  box-shadow: 5px 5px 10px var(--box-shadow-color);
   @media screen and (min-width: 480px) {
     max-height: 100vh;
     margin: 50px;
@@ -51,7 +52,7 @@ h3 {
   span {
     &.text {
       padding: 10px;
-      border: 1px solid black;
+      box-shadow: 3px 3px 4px 1px var(--box-shadow-color);
       border-radius: 15px;
       pre {
         font-family: var(--font-family);
@@ -120,7 +121,7 @@ h3 {
 hr {
   padding: 0;
   margin: 0;
-  border: solid 1px lightgray;
+  border: solid 1px var(--box-shadow-color);
 }
 
 form {
