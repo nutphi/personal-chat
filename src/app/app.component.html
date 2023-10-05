@@ -1,7 +1,8 @@
-<div class="chat">
+<div class="chat" [class.darkmode]="theme.darkmode()">
   <h3>Chat here to know Nuttakit more <img src="assets/work-in-progress.png"></h3>
   <div class="chat-content">
     <form [formGroup]="group" (ngSubmit)="sendMessage()">
+      <button type="button" (click)="theme.toggle()"><img [src]="theme.darkmode() ? 'assets/day-mode.png' : 'assets/night-mode.png'"></button>
       <input type="text" formControlName="message">
       <button type="submit"><img src="assets/send.png"></button>
     </form>
