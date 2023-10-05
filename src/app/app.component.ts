@@ -20,6 +20,11 @@ export class AppComponent {
 
   constructor(protected chat: ChatService, protected theme: ThemeService) { }
 
+  ngOnInit() {
+    // set here to get default from localstorage
+    this.theme.initialTheme();
+  }
+
   ngAfterViewInit() {
     this.messages.changes.pipe(
       filter(list => !!(list?.last?.nativeElement)),
