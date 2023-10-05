@@ -7,15 +7,30 @@
   --profile-icon-height: 20px;
   --icon-width: 16px;
   --icon-height: 16px;
+
+  --header-color: skyblue;
+  --box-shadow-chat: 5px 5px 10px;
+  --box-shadow-message: 3px 3px 4px 1px;
   --box-shadow-color: #d3d3d3;
+  --background-color: white;
+  --color: black;
+}
+
+.darkmode {
+  --header-color: #eba487;
+  --box-shadow-color: #3d3d3d;
+  --box-shadow-chat: 5px 5px 10px 4px;
+  --box-shadow-message: 2px 2px 5px 3px;
+  --background-color: black;
+  --color: white;
 }
 
 h3 {
   font-size: var(--header-font-size);
   margin: 0px;
   padding: 8px;
-  background-color: skyblue;
-  color: black;
+  background-color: var(--header-color);
+  color: var(--color);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 
@@ -29,7 +44,7 @@ h3 {
   height: 80vh;
   max-height: 1024px;
   border-radius: 8px;
-  box-shadow: 5px 5px 10px var(--box-shadow-color);
+  box-shadow: var(--box-shadow-chat) var(--box-shadow-color);
   @media screen and (min-width: 480px) {
     max-height: 100vh;
     margin: 50px;
@@ -51,10 +66,11 @@ h3 {
   display: flex;
   width: 100%;
   font-size: var(--font-size);
+  color: var(--color);
   span {
     &.text {
       padding: 10px;
-      box-shadow: 3px 3px 4px 1px var(--box-shadow-color);
+      box-shadow: var(--box-shadow-message) var(--box-shadow-color);
       border-radius: 15px;
       pre {
         font-family: var(--font-family);
@@ -79,11 +95,12 @@ h3 {
     img.profile-img {
       width: var(--profile-icon-width);
       height: var(--profile-icon-height);
+      background-color: var(--header-color);
       margin: 5px 5px 0 5px;
       padding: 5px;
       border: 1px solid black;
       border-radius: 50%;
-    }  
+    }
   }
 
   .received {
@@ -94,9 +111,6 @@ h3 {
     margin: 5px;
     span.text {
       border-bottom-left-radius: 0px;
-    }
-    img.profile-img {
-      background-color: skyblue;
     }
   }
   .sending {
@@ -130,25 +144,46 @@ form {
   display: flex;
   width: 100%;
   justify-content: center;
+  align-items: center;
   input {
     width: 100%;
     border: none;
     height: var(--chatinput-height);
     font-size: var(--font-size);
     font-family: var(--font-family);
+    color: var(--color);
+    background-color: var(--background-color);
     margin-left: 5px;
     &:focus {
       outline: none;
     }
   }
+
+  button[type=button] {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    margin-left: 5px;
+    img {
+      width: var(--icon-width);
+      height: var(--icon-height);
+    }
+  }
+
   button[type=submit] {
     display: flex;
     align-items: center;
     padding: 5px;
     margin-right: 5px;
-    background-color: transparent;
+    background-color: white;
     border: none;
+    border-radius: 50%;
     cursor: pointer;
+    width: 24px;
+    height: 24px;
     img {
       width: var(--icon-width);
       height: var(--icon-height);
