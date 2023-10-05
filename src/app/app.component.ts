@@ -1,10 +1,9 @@
-import { Component, DestroyRef, ElementRef, QueryList, ViewChildren, ViewEncapsulation, inject } from '@angular/core';
+import { Component, DestroyRef, ElementRef, QueryList, ViewChildren, inject } from '@angular/core';
 import { ChatService } from './chat.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { environment } from './../environments/environment';
-import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,7 @@ export class AppComponent {
   profileImg = environment.profileImg;
   @ViewChildren('messages', {read: ElementRef<HTMLDivElement>}) messages!: QueryList<ElementRef<HTMLDivElement>>;
 
-  constructor(protected chat: ChatService, protected theme: ThemeService) { }
+  constructor(protected chat: ChatService) { }
 
   ngAfterViewInit() {
     this.messages.changes.pipe(
