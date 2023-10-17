@@ -1,5 +1,4 @@
 import * as express from "express";
-import * as cors from "cors";
 import * as functions from "firebase-functions";
 const builderFunction = functions.region("us-east1");
 const httpBuilder = builderFunction.https;
