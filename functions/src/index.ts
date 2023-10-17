@@ -19,12 +19,18 @@ const client = new DiscussServiceClient.DiscussServiceClient({
 
 const app = express();
 
-app.use(function(_req, res, next) {
+app.use(function(req, res, next) {
+  const corsOrigin = process.env.CORS_ORIGIN || "*";
+  const reqOrigin = req.get("Origin");
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", process.env.CORS_ORIGIN || "*");
+  res.setHeader("Access-Control-Allow-Origin", corsOrigin);
   res.setHeader("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,X-Access-Token");
   res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  next();
+  if (!!reqOrigin || !reqOrigin?.startsWith(corsOrigin)) {
+    res.status(403).send("Unforutnately, you're not able to access the api");
+  } else {
+    next();
+  }
 });
 
 /**
