@@ -19,11 +19,9 @@ const client = new DiscussServiceClient.DiscussServiceClient({
 });
 
 const app = express();
-const corsOrigin = cors({origin: process.env.CORS_ORIGIN, optionsSuccessStatus: 200});
-app.use(corsOrigin);
 
 app.use(function(_req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", process.env.CORS_ORIGIN || "*");
   res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
   res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
   next();
