@@ -21,16 +21,16 @@ const app = express();
 
 app.use(function(req, res, next) {
   const corsOrigin = process.env.CORS_ORIGIN || "*";
-  const reqOrigin = req.get("Origin");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Origin", corsOrigin);
   res.setHeader("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,X-Access-Token");
   res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  if (!!reqOrigin || !reqOrigin?.startsWith(corsOrigin)) {
-    res.status(403).send("Unforutnately, you're not able to access the api");
-  } else {
-    next();
-  }
+  // const reqOrigin = req.get("Origin");
+  // if (!!reqOrigin || !reqOrigin?.startsWith(corsOrigin)) {
+  //   res.status(403).send("Unforutnately, you're not able to access the api");
+  // } else {
+  next();
+  // }
 });
 
 /**
@@ -80,7 +80,14 @@ const getDefault = (req: express.Request, res: express.Response) => {
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }).then((result: any) => {
-      res.send(result[0].candidates[0].content);
+      const reqOrigin = req.get("Origin");
+      const corsOrigin = process.env.CORS_ORIGIN || "*";
+      res.send({
+        content: result[0].candidates[0].content,
+        reqOrigin: reqOrigin,
+        corsOrigin: corsOrigin,
+        condition: reqOrigin?.startsWith(corsOrigin),
+      });
     }).catch((error: Error) => { // Added error handling
       console.error("Error:", error);
       res.status(500).send("An error occurred while processing your request.");
