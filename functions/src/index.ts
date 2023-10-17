@@ -20,8 +20,9 @@ const client = new DiscussServiceClient.DiscussServiceClient({
 const app = express();
 
 app.use(function(_req, res, next) {
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Origin", process.env.CORS_ORIGIN || "*");
-  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+  res.setHeader("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,X-Access-Token");
   res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
   next();
 });
