@@ -18,9 +18,8 @@ const client = new DiscussServiceClient.DiscussServiceClient({
   authClient: new GoogleAuth.GoogleAuth().fromAPIKey(API_KEY),
 });
 
-
 const app = express();
-const corsOrigin = cors({origin: true});
+const corsOrigin = cors({origin: process.env.CORS_ORIGIN, optionsSuccessStatus: 200});
 app.use(corsOrigin);
 
 app.use(function(_req, res, next) {
