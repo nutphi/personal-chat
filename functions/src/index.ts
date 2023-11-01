@@ -1,5 +1,4 @@
 import * as express from "express";
-import * as cors from "cors";
 import * as functions from "firebase-functions";
 const builderFunction = functions.region("us-east1");
 const httpBuilder = builderFunction.https;
@@ -18,16 +17,20 @@ const client = new DiscussServiceClient.DiscussServiceClient({
   authClient: new GoogleAuth.GoogleAuth().fromAPIKey(API_KEY),
 });
 
-
 const app = express();
-const corsOrigin = cors({origin: true});
-app.use(corsOrigin);
 
-app.use(function(_req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+app.use(function(req, res, next) {
+  const corsOrigin = process.env.CORS_ORIGIN || "*";
+  const reqOrigin = req.get("Origin");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", corsOrigin);
+  res.setHeader("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,X-Access-Token");
   res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  next();
+  if (!reqOrigin?.startsWith(corsOrigin)) {
+    res.status(403).send("Unforutnately, you're not able to access the api");
+  } else {
+    next();
+  }
 });
 
 /**
