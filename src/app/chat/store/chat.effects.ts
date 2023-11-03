@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { mergeMap, of } from "rxjs";
+import { map, mergeMap, of } from "rxjs";
 import { ChatService } from "../chat.service";
 import * as ChatActions from './chat.actions';
 
@@ -8,7 +8,7 @@ import * as ChatActions from './chat.actions';
 export class ChatEffects {
   constructor(private actions$: Actions, private chatService: ChatService) {}
 
-  getDefault$ = createEffect(() =>
+  getDefaultResponse$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ChatActions.requestDefaultMessage),
       mergeMap(() => {
@@ -22,11 +22,14 @@ export class ChatEffects {
   getResponse$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ChatActions.sendMessage),
-      mergeMap((action: any) => {
-        return this.chatService.chatApi.getMessage(action.message);
+      mergeMap(({message}) => {
+        return this.chatService.chatApi.getMessage(message)
+          .pipe(
+            map((newMessage: string) => ({sendingMessage: message, message: newMessage}))
+          )
       }),
-      mergeMap((message: string) => {
-        return of(ChatActions.responseMessage({ message }));
+      mergeMap(({sendingMessage, message}) => {
+        return of(ChatActions.responseMessage({ sendingMessage, message }));
       })
-));
+  ));
 }
