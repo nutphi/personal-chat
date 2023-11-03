@@ -14,7 +14,6 @@ export class ThemeService {
 
   themeMode$ = this.store.select(getMode)
     .pipe(
-      tap((e) => console.log('hello' , e)),
       tap((mode: ThemeMode) => this.updateBackground(mode === 'Dark')))
   
   constructor(private themeStorage: StorageService<boolean>, private store: Store<AppState>) {
