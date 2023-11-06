@@ -11,12 +11,8 @@ export class ChatEffects {
   getDefaultResponse$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ChatActions.requestDefaultMessage),
-      mergeMap(() => {
-        return this.chatService.chatApi.getDefaultMessage();
-      }),
-      mergeMap((message: string) => {
-        return of(ChatActions.responseMessage({ message }));
-      })
+      mergeMap(() => this.chatService.chatApi.getDefaultMessage()),
+      mergeMap((message: string) => of(ChatActions.responseMessage({ message })))
   ));
 
   getResponse$ = createEffect(() =>

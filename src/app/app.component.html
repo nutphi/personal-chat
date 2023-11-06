@@ -1,5 +1,5 @@
-<ng-container *ngIf="{ mode: theme.themeMode$ | async, messages: chat.messages$ |async } as chatObj">
-  <div class="chat" [class.darkmode]="chatObj.mode === 'Dark'">  
+<ng-container *ngIf="{ mode: theme.themeMode$ | async, messages: chat.messages$ | async } as chatObj">
+  <div class="chat" [class.darkmode]="chatObj.mode === 'Dark'">
     <h3>Chat here to know Nuttakit more <img src="assets/work-in-progress.png"></h3>
     <div class="chat-content">
       <form [formGroup]="group" (ngSubmit)="sendMessage()">

@@ -1,14 +1,11 @@
 import { Component, DestroyRef, ElementRef, QueryList, ViewChildren, inject } from '@angular/core';
 import { ChatService } from './chat/chat.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Observable, filter, map } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { environment } from './../environments/environment';
-import { ThemeService } from './theme.service';
+import { ThemeService } from './theme/theme.service';
 import { NgFor, DatePipe, AsyncPipe, NgIf, JsonPipe } from '@angular/common';
-import { AppState } from './app.state.interface';
-import { Store } from '@ngrx/store';
-import * as ChatActions from './chat/store/chat.actions';
 
 @Component({
     selector: 'app-root',
@@ -24,11 +21,11 @@ export class AppComponent {
   profileImg = environment.profileImg;
   @ViewChildren('messages', {read: ElementRef<HTMLDivElement>}) messages!: QueryList<ElementRef<HTMLDivElement>>;
 
-  constructor(protected chat: ChatService, protected theme: ThemeService, private store: Store<AppState>) { }
+  constructor(protected chat: ChatService, protected theme: ThemeService) { }
 
   ngOnInit() {
-    this.store.dispatch(ChatActions.requestDefaultMessage());
     // set here to get default from localstorage
+    this.chat.sendDefaultMessage();
     this.theme.initialTheme();
   }
 
