@@ -1,18 +1,18 @@
 import { Component, DestroyRef, ElementRef, QueryList, ViewChildren, inject } from '@angular/core';
-import { ChatService } from './chat.service';
+import { ChatService } from './chat/chat.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { environment } from './../environments/environment';
-import { ThemeService } from './theme.service';
-import { NgFor, DatePipe } from '@angular/common';
+import { ThemeService } from './theme/theme.service';
+import { NgFor, DatePipe, AsyncPipe, NgIf, JsonPipe } from '@angular/common';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
-    imports: [ReactiveFormsModule, NgFor, DatePipe]
+    imports: [ReactiveFormsModule, NgIf, NgFor, DatePipe, AsyncPipe, JsonPipe]
 })
 export class AppComponent {
   title = 'personal-chat';
@@ -25,6 +25,7 @@ export class AppComponent {
 
   ngOnInit() {
     // set here to get default from localstorage
+    this.chat.sendDefaultMessage();
     this.theme.initialTheme();
   }
 
