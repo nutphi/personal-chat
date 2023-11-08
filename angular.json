@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "personal-chat:build:production"
+              "buildTarget": "personal-chat:build:production"
             },
             "development": {
-              "browserTarget": "personal-chat:build:development"
+              "buildTarget": "personal-chat:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "personal-chat:build"
+            "buildTarget": "personal-chat:build"
           }
         },
         "test": {
