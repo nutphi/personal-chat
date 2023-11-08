@@ -8,17 +8,19 @@
     </form>
     <hr>
     <div class="message-section">
-      <div #messages class="message" *ngFor="let message of chat.allMessages()">
-        <div class="{{message.type}}">
-          <span class="time">{{ message.timestamp | date: 'shortTime' }}</span>
-          <span class="text">
-            <pre>{{ message.text }}</pre>
-          </span>
-          <div class="profile-section">
-            <img class="profile-img" [src]="profileImg[message.type]">
+      @for (message of chat.allMessages(); track message.timestamp) {
+        <div #messages class="message">
+          <div class="{{message.type}}">
+            <span class="time">{{ message.timestamp | date: 'shortTime' }}</span>
+            <span class="text">
+              <pre>{{ message.text }}</pre>
+            </span>
+            <div class="profile-section">
+              <img class="profile-img" [src]="profileImg[message.type]">
+            </div>
           </div>
         </div>
-      </div>
+      }
     </div>
   </div>
 </div>
