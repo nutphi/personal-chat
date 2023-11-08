@@ -22,7 +22,7 @@ export class ChatService {
     this.chatApi.getDefaultMessage()
       .pipe(takeUntilDestroyed(this.destryoRef))
       .subscribe((text: string) => {
-        this.allMessagesSignal.mutate((value) => {
+        this.allMessagesSignal.update((value: Message[]) => {
           value.push({text, type: 'received', timestamp: new Date().getTime()});
           return value;
         });
@@ -32,7 +32,7 @@ export class ChatService {
   sendMessage(sendingMessage: string): void {
     let index: number;
     // sending user message
-    this.allMessagesSignal.mutate((value) => {
+    this.allMessagesSignal.update((value: Message[]) => {
       const message: Message = {text: sendingMessage, type: 'sending', timestamp: new Date().getTime()};
       value.push(message);
       index = value.indexOf(message);
@@ -42,7 +42,7 @@ export class ChatService {
     this.chatApi.getMessage(sendingMessage)
       .pipe(takeUntilDestroyed(this.destryoRef))
       .subscribe((text: string) => {
-        this.allMessagesSignal.mutate((value) => {
+        this.allMessagesSignal.update((value: Message[]) => {
           value[index].type = 'sent';
           value.push({text, type: 'received', timestamp: new Date().getTime()});
           return value;
