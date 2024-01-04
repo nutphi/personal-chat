@@ -10,7 +10,6 @@
     "test": "ng test",
     "deploy": "ng build --configuration production && firebase deploy --only hosting"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "17.0.8",
     "@angular/common": "17.0.8",
