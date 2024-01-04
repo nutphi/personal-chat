@@ -45,12 +45,14 @@ h3 {
   max-height: 1024px;
   border-radius: 8px;
   box-shadow: var(--box-shadow-chat) var(--box-shadow-color);
+
   @media screen and (min-width: 480px) {
     max-height: 100vh;
     margin: 50px;
     margin-top: 0px;
   }
 }
+
 .chat-content {
   display: flex;
   flex-direction: column-reverse;
@@ -67,11 +69,13 @@ h3 {
   width: 100%;
   font-size: var(--font-size);
   color: var(--color);
+
   span {
     &.text {
       padding: 10px;
       box-shadow: var(--box-shadow-message) var(--box-shadow-color);
       border-radius: 15px;
+
       pre {
         font-family: var(--font-family);
         margin: 0px;
@@ -80,6 +84,7 @@ h3 {
         overflow: auto;
       }
     }
+
     &.time {
       font-family: var(--font-family);
       padding: 5px;
@@ -92,6 +97,7 @@ h3 {
   .profile-section {
     display: flex;
     align-items: self-end;
+
     img.profile-img {
       width: var(--profile-icon-width);
       height: var(--profile-icon-height);
@@ -109,25 +115,30 @@ h3 {
     justify-content: flex-end;
     flex-direction: row-reverse;
     margin: 5px;
+
     span.text {
       border-bottom-left-radius: 0px;
     }
   }
+
   .sending {
     display: flex;
     width: 100%;
     justify-content: flex-end;
     margin: 5px;
+
     span.text {
       border: 1.5px dashed gray;
       border-bottom-right-radius: 0px;
     }
   }
+
   .sent {
     display: flex;
     width: 100%;
     justify-content: flex-end;
     margin: 5px;
+
     span.text {
       border-bottom-right-radius: 0px;
     }
@@ -145,6 +156,7 @@ form {
   width: 100%;
   justify-content: center;
   align-items: center;
+
   input {
     width: 100%;
     border: none;
@@ -154,6 +166,7 @@ form {
     color: var(--color);
     background-color: var(--background-color);
     margin-left: 5px;
+
     &:focus {
       outline: none;
     }
@@ -167,6 +180,7 @@ form {
     background-color: transparent;
     border-radius: 50%;
     margin-left: 5px;
+
     img {
       width: var(--icon-width);
       height: var(--icon-height);
@@ -184,6 +198,7 @@ form {
     cursor: pointer;
     width: 24px;
     height: 24px;
+
     img {
       width: var(--icon-width);
       height: var(--icon-height);
