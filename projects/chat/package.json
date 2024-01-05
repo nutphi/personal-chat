@@ -1,6 +1,6 @@
 {
   "name": "nuttakit-chat",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "17.0.8",
     "@angular/core": "17.0.8"
