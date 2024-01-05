@@ -1,7 +1,40 @@
 # PersonalChat
 
 Developed an AI chatbot website to answer questions about myself.
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
+
+# Chat Library
+
+Integrated the chat library into any projects as the following
+
+- run `npm i nuttakit-chat`
+- add the `ChatComponent` into your project
+- add the element `<nuttakit-chat />` into your template
+
+- You can customize the configure by adding `{ provide: ENVIRONMENT, useValue: <<the environment value>> }` into your providers.
+- Example of the environment value
+```
+{
+  profileImages: {
+    'received': 'assets/<<file name>>',
+    'sending': 'assets/<<file name>>',
+    'sent': 'assets/<<file name>>'
+  },
+  chatImages: {
+    'dark-mode': 'assets/<<file name>>',
+    'light-mode': 'assets/<<file name>>',
+    'send': 'assets/<<file name>>'
+  },
+  isMockup: false,
+  apiUrl: '<<api url>>',
+};
+```
+
+# API
+
+There are 2 APIs
+- `get <<url>>/practice/new` with `{message: encodeURIComponent(message)}, responseType: 'text'}` params to get the bot response; it returns string value
+- `get <<url>>/practice` to get the first message from bot; it returns string value
 
 # Technologies Used
 
