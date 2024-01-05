@@ -4,21 +4,33 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ThemeService } from './services/theme.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { ENVIRONMENT } from './environment.token';
 
 @Component({
   selector: 'nuttakit-chat',
   standalone: true,
-  imports: [ReactiveFormsModule, DatePipe],
+  imports: [ReactiveFormsModule, DatePipe, NgIf],
   template: `
   <div class="chat" [class.darkmode]="theme.darkmode()">
-    <h3>Chat here to know Nuttakit more <img src="assets/work-in-progress.png"></h3>
+    <h3>Chat here to know Nuttakit more</h3>
     <div class="chat-content">
       <form [formGroup]="group" (ngSubmit)="sendMessage()">
-        <button type="button" (click)="theme.toggle()"><img [src]="theme.darkmode() ? 'assets/day-mode.png' : 'assets/night-mode.png'"></button>
+        <button type="button" (click)="theme.toggle()">
+            <img *ngIf="environment.chatImages; else defaultDarkMode" [src]="theme.darkmode() ? chatImg['light-mode'] : chatImg['dark-mode']">
+            <ng-template #defaultDarkMode>
+              <span class="img" [class.darkmode]="theme.darkmode()">
+                {{ theme.darkmode() ? chatImg['light-mode'] : chatImg['dark-mode'] }}
+              </span>
+            </ng-template>
+        </button>
         <input type="text" formControlName="message">
-        <button type="submit"><img src="assets/send.png"></button>
+        <button type="submit">
+            <img *ngIf="environment.chatImages; else defaultChatImg" [src]="chatImg.send">
+            <ng-template #defaultChatImg>
+              <span class="img">{{chatImg.send}}</span>
+            </ng-template>
+          </button>
       </form>
       <hr>
       <div class="message-section">
@@ -30,7 +42,11 @@ import { ENVIRONMENT } from './environment.token';
                 <pre>{{ message.text }}</pre>
               </span>
               <div class="profile-section">
-                <img class="profile-img" [src]="profileImg[message.type]">
+                @if(environment.profileImages) {
+                  <img class="profile-img" [src]="profileImg[message.type]">
+                } @else {
+                  <span class="profile-img">{{profileImg[message.type]}}</span>
+                }
               </div>
             </div>
           </div>
@@ -43,7 +59,17 @@ import { ENVIRONMENT } from './environment.token';
 export class ChatComponent {
   destroyRef = inject(DestroyRef);
   fb = inject(FormBuilder);
-  profileImg = inject(ENVIRONMENT).profileImg;
+  environment = inject(ENVIRONMENT);
+  profileImg = this.environment.profileImages ?? {
+    received: '🤖',
+    sending: '🏃',
+    sent: '👶🏼'
+  };
+  chatImg = this.environment.chatImages ?? {
+    "dark-mode": '🌙',
+    "light-mode": '☀️',
+    send: '✉️'
+  };
   @ViewChildren('messages', {read: ElementRef<HTMLDivElement>}) messages!: QueryList<ElementRef<HTMLDivElement>>;
 
   constructor(protected chat: ChatService, protected theme: ThemeService) { }

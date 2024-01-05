@@ -98,7 +98,10 @@ h3 {
     display: flex;
     align-items: self-end;
 
-    img.profile-img {
+    img.profile-img, span.profile-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: var(--profile-icon-width);
       height: var(--profile-icon-height);
       background-color: var(--header-color);
