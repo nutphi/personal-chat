@@ -1,6 +1,6 @@
 import { Component, DestroyRef, ElementRef, QueryList, ViewChildren, inject } from '@angular/core';
 import { ChatService } from './services/chat.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { filter, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ThemeService } from './services/theme.service';
@@ -90,11 +90,14 @@ export class ChatComponent {
   }
 
   group: FormGroup = this.fb.group({
-    message: ''
+    message: ['', [Validators.required, Validators.pattern(/^(?=.*[a-zA-Z0-9]).+$/)]]
   });
 
   sendMessage() {
-    this.chat.sendMessage(this.group.getRawValue().message);
-    this.group.reset();
+    const message = this.group.getRawValue().message;
+    if (this.group.valid) {
+      this.chat.sendMessage(message);
+      this.group.reset();
+    }
   }
 }
