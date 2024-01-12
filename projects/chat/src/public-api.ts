@@ -3,5 +3,5 @@
  */
 
 export * from './lib/chat.component';
-export * from './lib/environment.model';
-export * from './lib/environment.token';
+export * from './lib/environments/environment.model';
+export * from './lib/environments/environment.token';

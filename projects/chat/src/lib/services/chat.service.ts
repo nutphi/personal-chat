@@ -3,7 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Message } from './chat.model';
 import { ChatApiService } from '../api/chat-api.service';
 import { ChatApiMockService } from '../api/mock/chat-api.mock.service';
-import { ENVIRONMENT } from '../environment.token';
+import { ENVIRONMENT } from '../environments/environment.token';
 
 @Injectable({
   providedIn: 'root'
