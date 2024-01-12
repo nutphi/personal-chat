@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { IChatApiService } from './chat-api.interface.service';
-import { ENVIRONMENT } from '../environment.token';
+import { ENVIRONMENT } from '../environments/environment.token';
 
 @Injectable({
   providedIn: 'root'

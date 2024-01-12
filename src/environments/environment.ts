@@ -1,4 +1,4 @@
-import { Environment } from "projects/chat/src/lib/environment.model";
+import { Environment } from "@nuttakit/chat/src/lib/environments/environment.model";
 
 export const environment: Environment = {
   profileImages: {

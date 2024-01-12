@@ -5,7 +5,7 @@ import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http'
 import { AppRoutingModule } from './app/app-routing.module';
 import { CommonModule } from '@angular/common';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-import { ENVIRONMENT } from '@nuttakit/chat/src/lib/environment.token';
+import { ENVIRONMENT } from '@nuttakit/chat';
 import { environment } from './environments/environment';
 
 

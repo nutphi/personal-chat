@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChatComponent } from 'projects/chat/src/public-api';
+import { ChatComponent } from '@nuttakit/chat';
 
 @Component({
   selector: 'app-root',
