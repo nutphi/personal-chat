@@ -12,5 +12,5 @@ export const environment: Environment = {
     'send': 'assets/send.png'
   },
   isMockup: false,
-  apiUrl: 'https://us-east1-personal-chat-3eac2.cloudfunctions.net',
+  apiUrl: 'https://chatbot-5qa4pswpya-ue.a.run.app',
 };
