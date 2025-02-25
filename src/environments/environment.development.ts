@@ -10,5 +10,5 @@ export const environment = {
     'send': 'assets/send.png'
   },
   isMockup: false,
-  apiUrl: 'http://127.0.0.1:5001/personal-chat-3eac2/us-east1',
+  apiUrl: 'https://chatbot-5qa4pswpya-ue.a.run.app',
 };

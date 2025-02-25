@@ -12,14 +12,14 @@ export class ChatApiService implements IChatApiService {
   private environment = inject(ENVIRONMENT);
 
   getDefaultMessage(): Observable<string> {
-    return this.http.get(`${this.environment.apiUrl}/chatbot`,
+    return this.http.get(`${this.environment.apiUrl}`,
         {responseType: 'text'}
       )
       .pipe(catchError(() => of("Unfortunately, I can't answer this question.")));
   }
 
   getMessage (message: string): Observable<string> {
-    return this.http.get(`${this.environment.apiUrl}/chatbot`,
+    return this.http.get(`${this.environment.apiUrl}`,
         {params: {message: encodeURIComponent(message)}, responseType: 'text'}
       )
       .pipe(catchError(() => of("Unfortunately, I can't answer this question.")));

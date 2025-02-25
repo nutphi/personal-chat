@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { ChatComponent } from '@nuttakit/chat';
+import { PersonalChatComponent } from './personal-chat/personal-chat.component';
 
 @Component({
-  selector: 'app-root',
-  template: `<nuttakit-chat></nuttakit-chat>`,
-  styles: ``,
-  standalone: true,
-  imports: [ChatComponent]
+    selector: 'app-root',
+    template: `
+      <app-personal-chat></app-personal-chat>
+    `,
+    styles: ``,
+    imports: [PersonalChatComponent]
 })
 export class AppComponent {
   title = 'personal-chat';

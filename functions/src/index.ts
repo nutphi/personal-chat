@@ -71,10 +71,11 @@ const getDefault = async (req: express.Request, res: express.Response) => {
   const myParam = await fetchModel();
   const chatSession = model.startChat(myParam);
   const botResponse = await chatSession.sendMessage(message);
-  res.send(botResponse?.response.candidates?.[0]?.content.parts?.[0].text);
+  res.send(botResponse?.response.text());
+  // candidates?.[0]?.content.parts?.[0].text;
 };
 
-app.get("/", getDefault);
+app.get("/chatbot", getDefault);
 
 // api call /practice/ to firebase functions
 export const chatbot = https.onRequest({region: "us-east1"}, app);

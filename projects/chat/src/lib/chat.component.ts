@@ -10,10 +10,9 @@ import { defaultChatImages, defaultProfileImages } from './environments/environm
 import { ChatImg, Environment, ProfileImg } from './environments/environment.model';
 
 @Component({
-  selector: 'nuttakit-chat',
-  standalone: true,
-  imports: [ReactiveFormsModule, DatePipe],
-  template: `
+    selector: 'nuttakit-chat',
+    imports: [ReactiveFormsModule, DatePipe],
+    template: `
   <div class="chat" [class.darkmode]="theme.darkmode()">
     <h3>Chat here to know Nuttakit more</h3>
     <div class="chat-content">
@@ -44,7 +43,7 @@ import { ChatImg, Environment, ProfileImg } from './environments/environment.mod
       </div>
     </div>
   </div>`,
-  styleUrl: 'chat.component.scss'
+    styleUrl: 'chat.component.scss'
 })
 export class ChatComponent {
   destroyRef: DestroyRef = inject(DestroyRef);

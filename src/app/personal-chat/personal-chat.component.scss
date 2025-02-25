@@ -1,0 +1,13 @@
+.chat { position: absolute; z-index: -1; }
+.rangeHeight { display: flex; position: absolute; left:30px; bottom: 0px; }
+.rangeWidth { display: flex; position: absolute; left:180px; bottom: 0px; }
+.hidden { display: none; }
+.chat-hidden {
+  position: absolute;
+  z-index: 0;
+  right: 30px; bottom: 30px;
+  border-radius: 10px;
+  border: 2px dashed gray;
+  background-color: skyblue;
+  cursor: pointer;
+}
