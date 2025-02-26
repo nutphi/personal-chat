@@ -1,0 +1,9 @@
+<nuttakit-chat class="chat" [style.height.px]="heightControl.value" [style.min-height.px]="140" [style.maxHeight.px]="750" [style.width.%]="widthControl.value" [class.hidden]="!hidden"></nuttakit-chat>
+@if (hidden) {
+<div class="rangeHeight">H:<input type="range" [formControl]="heightControl" min="140" max="750" step="10"></div>
+<div class="rangeWidth">W:<input type="range" [formControl]="widthControl" min="40" max="90" step="5"></div>
+}
+<button class="chat-hidden" (click)="hidden=!hidden">
+  <app-robot-icon [icon]="!hidden"></app-robot-icon>
+  <div>click here</div>
+</button>
