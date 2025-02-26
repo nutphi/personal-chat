@@ -38,6 +38,7 @@ describe('AppComponent', () => {
 
     it('should send my first message with enter', () => {
       cy.clock(new Date(2024, 7, 17, 11, 0, 0).getTime());
+      cy.get('.chat-hidden').click();
       cy.get('.chat-content > form > input[type="text"]').as('user-text-input');
       cy.get('@user-text-input').type(
         'Hello Bot, tell me about Nuttakit.{enter}'
@@ -56,6 +57,7 @@ describe('AppComponent', () => {
     });
 
     it('should get bot response from user first message', () => {
+      cy.get('.chat-hidden').click();
       cy.get('.chat-content > form > input[type="text"]').as('user-text-input');
       cy.get('@user-text-input').type(
         'Hello Bot, tell me about Nuttakit.{enter}'
@@ -87,6 +89,7 @@ describe('AppComponent', () => {
       });
 
       it('can toggle into night mode and light mode back', () => {
+        cy.get('.chat-hidden').click();
         cy.get('html').should(
           'have.css',
           'background-color',
@@ -109,9 +112,7 @@ describe('AppComponent', () => {
         cy.getAllLocalStorage().then((result) => {
           const keys = Object.keys(result);
           expect(keys.length).equal(1);
-          expect(result[keys[0]]).to.deep.equal({
-            darkmode: 'true',
-          });
+          expect(result[keys[0]]['darkmode']).to.deep.equal('true');
         });
       });
     });
@@ -127,6 +128,7 @@ describe('AppComponent', () => {
       });
 
       it('can toggle into night mode and light mode back', () => {
+        cy.get('.chat-hidden').click();
         cy.get('html').should('have.css', 'background-color', 'rgb(0, 0, 0)');
         cy.get('@chat')
           .contains('Chat here to know Nuttakit more')
@@ -146,6 +148,11 @@ describe('AppComponent', () => {
         cy.get('@chat')
           .find('.profile-img')
           .should('have.css', 'background-color', 'rgb(135, 206, 235)');
+        cy.getAllLocalStorage().then((result) => {
+          const keys = Object.keys(result);
+          expect(keys.length).equal(1);
+          expect(result[keys[0]]['darkmode']).to.deep.equal('false');
+        });
       });
     });
   });
